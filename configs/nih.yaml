@@ -1,0 +1,26 @@
+###########
+# Classifier #
+###########
+
+# user hyperparams
+expt_name: 'dense121_nih'
+data_file: '/jet/home/nmurali/asc170022p/nmurali/projects/misc/temp/tmlr_spurious/data/nih.csv'
+class_names: 'Pneumothorax'
+pos_weights: [20.16] # this is the weight for the positive class: |num negative|/|num positive|
+num_classes: 1
+size: 128
+save_freq: 1 # save once every <save_freq> epochs
+num_epochs: 25
+
+seed: 0
+imgpath: ''
+output_dir: 'output'
+drop_rate: 0.00
+batch_size: 64
+opt: adam  # adam, adamw, sgd
+model: 'densenet121'
+channel: 1
+cuda: True
+shuffle: True
+lr: 0.0001
+threads: 4
