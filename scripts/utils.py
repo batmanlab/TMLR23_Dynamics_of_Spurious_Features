@@ -126,7 +126,7 @@ def uniform_binning(y_conf,bin_size=0.10):
     y_bin = np.asarray(y_bin)
     return y_bin
 
-def compute_pd(main_repo_dir, ckpt_path, train_embs_path, data_csv_path, expt_name='', cls_name='Pneumothorax', K=29, knn_pos_thresh=0.62, knn_neg_thresh=0.38, lp_norm=1, seed=0, grayscale=False, img_size=128, num_imgs=100, df_path_col='path'):
+def compute_pd(main_repo_dir, ckpt_path, train_embs_path, csv_plot_pd, expt_name='', cls_name='Pneumothorax', K=29, knn_pos_thresh=0.62, knn_neg_thresh=0.38, lp_norm=1, seed=0, grayscale=False, img_size=128, num_imgs=100, df_path_col='path'):
 
     # ===================== Seed =====================   
     np.random.seed(seed)
@@ -136,20 +136,16 @@ def compute_pd(main_repo_dir, ckpt_path, train_embs_path, data_csv_path, expt_na
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
 
-    # ===================== Create Pandas DataFrame for Validation Images =====================   
-    df_val = pd.read_csv(data_csv_path)
-    df_split_vals = df_val['split'].unique()
-    assert(('val' in df_split_vals) and ('train' in df_split_vals))
-
-    df_val = df_val[df_val['split']=='val']
-    df_val = df_val.sample(n=num_imgs,random_state=seed)
+    # ===================== Read CSV file used for plotting PD =====================   
+    df_plot_pd = pd.read_csv(csv_plot_pd)
+    df_plot_pd = df_plot_pd.sample(n=num_imgs,random_state=seed)
 
     # ===================== Assertions (Sanity Checks) =====================
     assert(os.path.exists(ckpt_path))
     assert(os.path.exists(train_embs_path))
-    assert(os.path.exists(data_csv_path))
-    assert(cls_name in df_val.columns)
-    assert(df_path_col in df_val.columns)
+    assert(os.path.exists(csv_plot_pd))
+    assert(cls_name in df_plot_pd.columns)
+    assert(df_path_col in df_plot_pd.columns)
     assert(K>0)
     assert(knn_pos_thresh>0 and knn_pos_thresh<1)
     assert(knn_neg_thresh>0 and knn_neg_thresh<1)
@@ -186,7 +182,7 @@ def compute_pd(main_repo_dir, ckpt_path, train_embs_path, data_csv_path, expt_na
 
     # ===================== Storing Batch Statistics =====================
     batch_info = {}
-    batch_info['readme'] = '---- K=%d ---- data_csv=%s ---- ckpt_path=%s ---- train_embs_path=%s ----' %(K,data_csv_path,ckpt_path,train_embs_path)
+    batch_info['readme'] = '---- K=%d ---- data_csv=%s ---- ckpt_path=%s ---- train_embs_path=%s ----' %(K,csv_plot_pd,ckpt_path,train_embs_path)
     batch_info['paths'] = [] # paths of test images
     batch_info['preds'] = [] # corresponding model predictions
     batch_info['labels'] = [] # labels of the test images
@@ -200,7 +196,7 @@ def compute_pd(main_repo_dir, ckpt_path, train_embs_path, data_csv_path, expt_na
         feature_maps.append(torch.reshape(out, (out.shape[0],-1)))
 
     # ===================== Loop over val images and collect statistics =====================
-    for df_idx, img_path in enumerate(tqdm(df_val[df_path_col])):        
+    for df_idx, img_path in enumerate(tqdm(df_plot_pd[df_path_col])):        
         batch_info['paths'].append(img_path)
         with Image.open(img_path) as img:
             with torch.no_grad():
@@ -212,7 +208,7 @@ def compute_pd(main_repo_dir, ckpt_path, train_embs_path, data_csv_path, expt_na
                 print('Model output: ')
                 print(torch.sigmoid(out))
                 batch_info['preds'].append(round(float(torch.sigmoid(out)),2))
-                batch_info['labels'].append(df_val.iloc[df_idx][cls_name])
+                batch_info['labels'].append(df_plot_pd.iloc[df_idx][cls_name])
 
                 # the below two lists are to store KNN distances (of neighbors) and labels across layers of DenseNet-121
                 # we need to loop over the validation batches stored in pickle file and update the list across batches

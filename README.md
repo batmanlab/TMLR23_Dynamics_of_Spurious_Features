@@ -3,7 +3,7 @@
 ### [Main Paper](https://openreview.net/pdf?id=Tkvmt9nDmB) | [arXiv](https://arxiv.org/abs/2302.09344#:~:text=Deep%20Neural%20Networks%20(DNNs)%20are,applied%20to%20safety%2Dcritical%20domains.) | [Video]() | [Poster](https://pitt-my.sharepoint.com/:b:/g/personal/nim123_pitt_edu/EYh3rVX8nOlKseTkgmx8qiYBQrC7DNpnxfnFJ5d9aJ9m2w?e=d3sVmC) | [Slides]() | [Talk](https://www.youtube.com/watch?v=6pP8YQX5cmc&ab_channel=ComputationalGenomicsSummerInstituteCGSI)
 
 Official PyTorch implementation of the [TMLR](https://jmlr.org/tmlr/) paper: <br/>
-**[Beyond Distribution Shift: Spurious Features Through the Lens of Training Dynamics]** <br/>
+**Beyond Distribution Shift: Spurious Features Through the Lens of Training Dynamics** <br/>
 [Nihal Murali<sup>1</sup>](),
 [Aahlad Manas Puli<sup>3</sup>](https://gatechke.github.io/),
 [Ke Yu<sup>1</sup>](https://gatechke.github.io/),

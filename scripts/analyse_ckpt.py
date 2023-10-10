@@ -29,10 +29,11 @@ def hook_feat_map(mod, inp, out):
 parser = argparse.ArgumentParser()
 parser.add_argument('main_repo_dir', type=str, help='path where repo is initialized') 
 parser.add_argument('expt_name', type=str, help='characteristic name for experiment (used for naming output files)') 
-parser.add_argument('data_csv_path', type=str, help='path to csv file containing ChestXRay data') 
-parser.add_argument('ckpt_path', type=str, help='path to checkpoint for which we want to compute pd') 
-parser.add_argument('--df_path_col', type=str, default='path', help='col name having file paths for images in the data_csv_path file')
-parser.add_argument('--cls_name', type=str, default='Pneumothorax', help='column name for target class in data_csv_path') 
+parser.add_argument('ckpt_path', type=str, help='path to model checkpoint used for computing PD') 
+parser.add_argument('csv_train_embs', type=str, help='csv file used for computing train-embeddings (used later by KNN for computing PD); make sure it has equal number of positives and negatives') 
+parser.add_argument('csv_plot_pd', type=str, help='csv file used for plotting PD') 
+parser.add_argument('--df_path_col', type=str, default='path', help='col name having file paths for images in the ChestXRay csv files')
+parser.add_argument('--cls_name', type=str, default='Pneumothorax', help='column name for target class in the ChestXRay csv files') 
 parser.add_argument('--img_size', type=int, default=128, help='size of input ChestXRay images') 
 parser.add_argument('--seed', type=int, default=0, help='seed for experiment') 
 parser.add_argument('--K', type=int, default=29, help='value of K for KNN') 
@@ -40,7 +41,7 @@ parser.add_argument('--knn_pos_thresh', type=float, default=0.62, help='KNN cons
 parser.add_argument('--knn_neg_thresh', type=float, default=0.38, help='same as above, but if mean vote less than this thresh we treat point as negative class')
 parser.add_argument('--lp_norm', type=int, default=1, help='1 or 2. used to calculate KNN distances')
 parser.add_argument('--grayscale', action='store_true', help='if true, then images are converted to grayscale before computing pd. Use this for GithubCovid Images')
-parser.add_argument('--num_imgs_for_pd', type=int, default=1000, help='number of images from data_csv_path to consider for computing pd')
+parser.add_argument('--num_imgs_for_pd', type=int, default=1000, help='number of images from csv_pd to consider for computing pd')
 args = parser.parse_args()
 
 # ===================== Load Model =====================
@@ -48,24 +49,17 @@ model = torch.load(args.ckpt_path).to('cuda')
 model = register_hooks(model, hook_feat_map)
 print('Model Loaded. \n')
 
-# ===================== Create Training Data Subset =====================
-df = pd.read_csv(args.data_csv_path)
-df_split_vals = df['split'].unique()
-assert(('val' in df_split_vals) and ('train' in df_split_vals))
-
-df_tr = df[df['split']=='train']
-df_tr_pos = df_tr[df_tr[args.cls_name]==1]
-df_tr_neg = df_tr[df_tr[args.cls_name]==0]
-df_subset = pd.concat([df_tr_pos.sample(n=500,random_state=args.seed),df_tr_neg.sample(n=500,random_state=args.seed)])
-df_subset = df_subset.sample(frac=1,random_state=args.seed).reset_index(drop=True)
-print(f'Number of Subset Training Images: {len(df_subset)} \n')
+# ===================== Read training data for KNN (used later for PD plots) =====================
+df_train_embs = pd.read_csv(args.csv_train_embs)
+print(f'Number of Embeddings: {len(df_train_embs)} \n')
 
 # ===================== Assertions (Sanity Checks) =====================
 assert(os.path.exists(args.main_repo_dir))
-assert(os.path.exists(args.data_csv_path))
+assert(os.path.exists(args.csv_train_embs))
+assert(os.path.exists(args.csv_plot_pd))
 assert(os.path.exists(args.ckpt_path))
-assert(args.cls_name in df_subset.columns)
-assert(args.df_path_col in df_subset.columns)
+assert(args.cls_name in df_train_embs.columns)
+assert(args.df_path_col in df_train_embs.columns)
 assert(args.img_size > 0)
 assert(args.seed >= 0)
 assert(args.K > 0)
@@ -82,7 +76,8 @@ transforms = torchvision.transforms.Compose([
     torchvision.transforms.Lambda(center_crop()),
     torchvision.transforms.Lambda(normalize())
 ])
-dataset = datasets.ChestXRayDataset(df=df_subset, class_names=[args.cls_name], transform=transforms)
+
+dataset = datasets.ChestXRayDataset(df=df_train_embs, class_names=[args.cls_name], transform=transforms)
 loader = torch.utils.data.DataLoader(dataset,
                                      batch_size=64,
                                      shuffle=False,
@@ -118,7 +113,7 @@ print('Embeddings for Training Data Subset Stored. \n')
 
 # ===================== Compute PD =====================
 train_embs_path = os.path.join(args.main_repo_dir,f'output/{args.expt_name}_tr_embs.pkl')
-pd_pkl_path = compute_pd(args.main_repo_dir, args.ckpt_path, train_embs_path, args.data_csv_path, args.expt_name, args.cls_name, args.K, args.knn_pos_thresh, args.knn_neg_thresh, args.lp_norm, args.seed, args.grayscale, args.img_size, args.num_imgs_for_pd, args.df_path_col)
+pd_pkl_path = compute_pd(args.main_repo_dir, args.ckpt_path, train_embs_path, args.csv_plot_pd, args.expt_name, args.cls_name, args.K, args.knn_pos_thresh, args.knn_neg_thresh, args.lp_norm, args.seed, args.grayscale, args.img_size, args.num_imgs_for_pd, args.df_path_col)
 print('PD Computed! \n')
 
 # ===================== Plot PD =====================
