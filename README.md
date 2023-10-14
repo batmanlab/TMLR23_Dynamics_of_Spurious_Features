@@ -17,12 +17,7 @@ Official PyTorch implementation of the [TMLR](https://jmlr.org/tmlr/) paper: <br
 1. [Objective](#objective)
 2. [Environment setup](#environment-setup)
 3. [Downloading data](#downloading-data)
-    * [(a) Downloading vision and skin data](#a-downloading-vision-and-skin-data)
-    * [(b) Downloading MIMIC-CXR](#b-downloading-mimic-cxr)
 4. [Training pipeline](#training-pipleline)
-    * [(a) Running MoIE](#a-running-moie)
-    * [(b) Compute the performance metrics](#b-compute-the-performance-metrics)
-    * [(c) Validating the concept importance](#c-validating-the-concept-importance)
 5. [How to Cite](#how-to-cite)
 6. [License and copyright](#license-and-copyright)
 
