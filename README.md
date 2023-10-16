@@ -17,9 +17,10 @@ Official PyTorch implementation of the [TMLR](https://jmlr.org/tmlr/) paper: <br
 1. [Objective](#objective)
 2. [Environment setup](#environment-setup)
 3. [Downloading data](#downloading-data)
-4. [Training pipeline](#training-pipleline)
-5. [How to Cite](#how-to-cite)
-6. [License and copyright](#license-and-copyright)
+4. [Data Preprocessing](#downloading-data)
+5. [Training pipeline](#training-pipleline)
+6. [How to Cite](#how-to-cite)
+7. [License and copyright](#license-and-copyright)
 
 ## Objective
 
@@ -54,7 +55,7 @@ conda activate TMLR23_spurious_dynamics
 | GitHub-COVID | [covid-chestxray-dataset GitHub](https://github.com/ieee8023/covid-chestxray-dataset)      |
 | NICO Dataset | [Dropbox Link] (https://www.dropbox.com/sh/u2bq2xo8sbax4pr/AADbhZJAy0AAbap76cg_XkAfa?dl=0) |
 
-## Data preprocessing
+## Data Preprocessing
 
 
 | Link  | Description                        |
