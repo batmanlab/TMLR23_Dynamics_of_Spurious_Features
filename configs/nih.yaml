@@ -4,8 +4,8 @@
 
 # user hyperparams
 expt_name: 'dense121_nih'
-data_file: '/jet/home/nmurali/asc170022p/nmurali/projects/misc/temp/tmlr_spurious/data/nih.csv'
-class_names: 'Pneumothorax'
+data_file: '/jet/home/nmurali/asc170022p/nmurali/projects/misc/temp/tmlr_spurious/data/nih_full.csv' 
+class_names: 'Pneumothorax' # class to train on (use the name of the class as it is in the csv file)
 pos_weights: [20.16] # this is the weight for the positive class: |num negative|/|num positive|
 num_classes: 1
 size: 128

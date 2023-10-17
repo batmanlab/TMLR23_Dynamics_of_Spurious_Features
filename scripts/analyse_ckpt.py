@@ -27,11 +27,11 @@ def hook_feat_map(mod, inp, out):
 
 # ===================== Parse Arguments =====================
 parser = argparse.ArgumentParser()
-parser.add_argument('main_repo_dir', type=str, help='path where repo is initialized') 
-parser.add_argument('expt_name', type=str, help='characteristic name for experiment (used for naming output files)') 
-parser.add_argument('ckpt_path', type=str, help='path to model checkpoint used for computing PD') 
-parser.add_argument('csv_train_embs', type=str, help='csv file used for computing train-embeddings (used later by KNN for computing PD); make sure it has equal number of positives and negatives') 
-parser.add_argument('csv_plot_pd', type=str, help='csv file used for plotting PD') 
+parser.add_argument('--main_repo_dir', type=str, deafult='/jet/home/nmurali/asc170022p/nmurali/projects/misc/TMLR23_Dynamics_of_Spurious_Features/', help='path where repo is initialized') 
+parser.add_argument('--expt_name', type=str, deafult='nih-spurious-feats', help='characteristic name for experiment (used for naming output files)') 
+parser.add_argument('--ckpt_path', type=str, deafult='/jet/home/nmurali/asc170022p/nmurali/projects/misc/TMLR23_Dynamics_of_Spurious_Features/output/nih_best_auc0.8316.pt', help='path to model checkpoint used for computing PD') 
+parser.add_argument('--csv_train_embs', type=str, default='/jet/home/nmurali/asc170022p/nmurali/projects/misc/TMLR23_Dynamics_of_Spurious_Features/data/nih_subset.csv', help='csv file used for computing train-embeddings (used later by KNN for computing PD); make sure it has equal number of positives and negatives') 
+parser.add_argument('--csv_plot_pd', type=str, default='/jet/home/nmurali/asc170022p/nmurali/projects/misc/TMLR23_Dynamics_of_Spurious_Features/data/nih_plot_pd.csv', help='csv file having image paths for which you want the PD plot') 
 parser.add_argument('--df_path_col', type=str, default='path', help='col name having file paths for images in the ChestXRay csv files')
 parser.add_argument('--cls_name', type=str, default='Pneumothorax', help='column name for target class in the ChestXRay csv files') 
 parser.add_argument('--img_size', type=int, default=128, help='size of input ChestXRay images') 
