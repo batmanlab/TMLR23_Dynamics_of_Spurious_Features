@@ -36,7 +36,7 @@ by showing the theoretical connections between Prediction Depth and information-
 that monitoring only accuracy during training (as is common in machine learning pipelines) is insufficient to detect spurious features. We, therefore, highlight the need for monitoring
 early training dynamics using suitable instance difficulty metrics.
 
-<img src='images/kmnist_expts.pdf'><br/>
+<img src='images/kmnist_expts.jpg'><br/>
 
 ## Environment setup
 
