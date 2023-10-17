@@ -179,7 +179,6 @@ data/
 *.pt
 *.pth
 *.h5
-*.pdf
 *.tar.gz
 *.vscode
 *.wandb
