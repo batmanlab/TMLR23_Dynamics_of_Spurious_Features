@@ -177,6 +177,7 @@ data/
 *.gif
 *.npy
 *.pt
+*.pdf
 *.pth
 *.h5
 *.tar.gz
