@@ -57,7 +57,6 @@ Download the relevant data files from below for which you want to compute Predic
 | MIMIC-CXR    | [PhysioNet portal](https://physionet.org/content/mimic-cxr-jpg/2.0.0/)                     |
 | CheXpert     | [Stanford ML Group](https://stanfordmlgroup.github.io/competitions/chexpert/)              |
 | GitHub-COVID | [covid-chestxray-dataset GitHub](https://github.com/ieee8023/covid-chestxray-dataset)      |
-| NICO Dataset | [Dropbox Link] (https://www.dropbox.com/sh/u2bq2xo8sbax4pr/AADbhZJAy0AAbap76cg_XkAfa?dl=0) |
 
 ## Data Preprocessing
 
@@ -74,7 +73,7 @@ PD computation requires running a k-Nearest Neighbor classifier (between the inp
 
 ## Training pipeline
 
-1. See the example config file in ./configs/nih.yaml. Replace the data_file with path to <dataset_name>_full.csv file above, and change the other variables as appropriate.
+1. See the example config file in [./configs/nih.yaml](/configs/nih.yaml). Replace the data_file with path to <dataset_name>_full.csv file above, and change the other variables as appropriate.
 
 Run the below command to train a densenet-121 model on the above dataset. Make sure to set in right values for the arguments
 
@@ -92,18 +91,18 @@ The PD plot is saved as ./output/<expt_name>_pd_plot.svg"
 
 3. Analyse the peaks in PD plot with Grad-CAM 
 
-Follow the steps in the ['./notebooks/pd_analysis.ipynb'](/notebooks/pd_analysis.ipynb) script
+Follow the steps in the [./notebooks/pd_analysis.ipynb](/notebooks/pd_analysis.ipynb) script
 
 ## Other Experiments
 
 1. Dominoes Experiments (see Fig-5 and Table-1 in Main Paper)
 
-a. Follow data-generation steps as outlined in: ['./notebooks/domino_generation.ipynb'](/notebooks/domino_generation.ipynb)
-b. Train models on domino-datasets by following steps in: ['./notebooks/domino_training.ipynb'](/notebooks/domino_training.ipynb)
+a. Follow data-generation steps as outlined in: [./notebooks/domino_generation.ipynb](/notebooks/domino_generation.ipynb)
+b. Train models on domino-datasets by following steps in: [./notebooks/domino_training.ipynb](/notebooks/domino_training.ipynb)
 
 2. Not all spurious features hurt generalization! (Toy data expts shown in Fig-6)
 
-The ['./notebooks/toy_data_expts.ipynb'](/notebooks/toy_data_expts.ipynb) notebook has all the steps: data generation, model training, pd plots, gradCAM/shap analysis
+The [./notebooks/toy_data_expts.ipynb](/notebooks/toy_data_expts.ipynb) notebook has all the steps: data generation, model training, pd plots, gradCAM/shap analysis
 
 3. PD/PVI correlation (see Table-2)
 
