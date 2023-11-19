@@ -111,11 +111,15 @@ Follow the simple steps in []()
 ## How to Cite
 * TMLR23 Main Paper
 ```
-@article{murali2023shortcut,
-  title={Shortcut Learning Through the Lens of Early Training Dynamics},
-  author={Murali, Nihal and Puli, Aahlad Manas and Yu, Ke and Ranganath, Rajesh and Batmanghelich, Kayhan},
-  journal={arXiv preprint arXiv:2302.09344},
-  year={2023}
+@article{
+murali2023beyond,
+title={Beyond Distribution Shift: Spurious Features Through the Lens of Training Dynamics},
+author={Nihal Murali and Aahlad Manas Puli and Ke Yu and Rajesh Ranganath and kayhan Batmanghelich},
+journal={Transactions on Machine Learning Research},
+issn={2835-8856},
+year={2023},
+url={https://openreview.net/forum?id=Tkvmt9nDmB},
+note={}
 }
 ```
 
