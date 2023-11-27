@@ -104,9 +104,6 @@ b. Train models on domino-datasets by following steps in: [./notebooks/domino_tr
 
 The [./notebooks/toy_data_expts.ipynb](/notebooks/toy_data_expts.ipynb) notebook has all the steps: data generation, model training, pd plots, gradCAM/shap analysis
 
-3. PD/PVI correlation (see Table-2)
-
-Follow the simple steps in []()
 
 ## How to Cite
 * TMLR23 Main Paper
