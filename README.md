@@ -64,12 +64,12 @@ PD computation requires running a k-Nearest Neighbor classifier (between the inp
 
 | Link  | Description                        |
 |-----------|------------------------------------|
-| [nih_full.csv](https://pitt-my.sharepoint.com/:x:/r/personal/nim123_pitt_edu/Documents/TMLR23_Dynamics_of_Spurious_Features/nih.csv?d=w1a6197caae734b35a9d2799032609cc9&csf=1&web=1&e=onM8L0)  | NIH full data (see Fig-8)    | 
-| [nih_subset.csv](https://pitt-my.sharepoint.com/:x:/r/personal/nim123_pitt_edu/Documents/TMLR23_Dynamics_of_Spurious_Features/nih_subset.csv?d=we9276741f6494387bc3e773d6cd1c7f0&csf=1&web=1&e=sMPUaV)  | NIH (subset): train embeddings for k-NN PD computations (see Fig-8)   | 
-| [chex_mimic_full.csv](https://pitt-my.sharepoint.com/:x:/r/personal/nim123_pitt_edu/Documents/TMLR23_Dynamics_of_Spurious_Features/ChexMIMIC_full.csv?d=w69c4f221c1e1496c989e9b4129fea7ad&csf=1&web=1&e=76BqCL)  | Chex-MIMIC full data (see Fig-7a)    | 
-| [chex_mimic_subset.csv](https://pitt-my.sharepoint.com/:x:/r/personal/nim123_pitt_edu/Documents/TMLR23_Dynamics_of_Spurious_Features/ChexMIMIC_subset.csv?d=w9b791d22c11e425598b3612c83bdedea&csf=1&web=1&e=hwWe3l)  | Chex-MIMIC (subset): train embeddings for k-NN PD computations (see Fig-7a)| 
-| [covid_full.csv](https://pitt-my.sharepoint.com/:x:/r/personal/nim123_pitt_edu/Documents/TMLR23_Dynamics_of_Spurious_Features/covid_full.csv?d=w42617bb1874d4c8db0a22e962beef6eb&csf=1&web=1&e=F6dUGE)  | Covid full data (see Fig-7b)   | 
-| [covid_subset.csv](https://pitt-my.sharepoint.com/:x:/r/personal/nim123_pitt_edu/Documents/TMLR23_Dynamics_of_Spurious_Features/covid_subset.csv?d=wd22a0304f42b42518a31796a6a847997&csf=1&web=1&e=B7PetJ)  | Covid (subset): train embeddings for k-NN PD computations (see Fig-7b)  | 
+| [nih_full.csv](https://docs.google.com/spreadsheets/d/12hMy_fSK6XlA4tyGFAKrPTfjDCofv33p/edit?usp=sharing&ouid=115482075722015063377&rtpof=true&sd=true)  | NIH full data (see Fig-8)    | 
+| [nih_subset.csv](https://docs.google.com/spreadsheets/d/1kVZLBR4XJJY7bowCO-fXBlahSGnNTGe8/edit?usp=sharing&ouid=115482075722015063377&rtpof=true&sd=true)  | NIH (subset): train embeddings for k-NN PD computations (see Fig-8)   | 
+| [chex_mimic_full.csv](https://docs.google.com/spreadsheets/d/1BF6SOvY8kmknJ8o3Dcuq-7A9cTNj_1r8/edit?usp=sharing&ouid=115482075722015063377&rtpof=true&sd=true)  | Chex-MIMIC full data (see Fig-7a)    | 
+| [chex_mimic_subset.csv](https://docs.google.com/spreadsheets/d/1dfz9T1D3lbyeP8TpfkvlpJNnjYtSj8yE/edit?usp=sharing&ouid=115482075722015063377&rtpof=true&sd=true)  | Chex-MIMIC (subset): train embeddings for k-NN PD computations (see Fig-7a)| 
+| [covid_full.csv](https://docs.google.com/spreadsheets/d/1sl-1XCBEKI2D3-Vy4trE0u4EKuqkpieW/edit?usp=sharing&ouid=115482075722015063377&rtpof=true&sd=true)  | Covid full data (see Fig-7b)   | 
+| [covid_subset.csv](https://docs.google.com/spreadsheets/d/1jpM8dWdaBxiezBBh0OVcusBc68_3oUEj/edit?usp=sharing&ouid=115482075722015063377&rtpof=true&sd=true)  | Covid (subset): train embeddings for k-NN PD computations (see Fig-7b)  | 
 
 ## Training pipeline
 
